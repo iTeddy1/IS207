@@ -1,0 +1,39 @@
+body {
+  background-color: yellow;
+}
+h1 {
+  margin: 20px;
+  font-size: 30px;
+}
+.container {
+  display: flex;
+  gap: 5px;
+}
+
+* {
+  margin: 0;
+  font-size: large;
+}
+
+img {
+  height: 200px;
+  width: 300px;
+}
+
+.img__big--height {
+  height: 250px;
+  width: 250px;
+}
+.img__big--width {
+  width: 250px;
+  height: 150px;
+}
+
+div {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+span {
+  align-self: flex-start;
+}

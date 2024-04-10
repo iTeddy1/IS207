@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+}
+
+h1 {
+  color: #8a2be2;
+}
+hr {
+  background-color: #0000ff;
+  padding: 2px;
+  margin: 10px;
+}
+form {
+  position: relative;
+  left: 40%;
+}
+button {
+  border-radius: 20px;
+  margin: 10px 0;
+}
+
+td {
+  column-width: 120px;
+}
+
+p {
+  font-style: italic;
+}

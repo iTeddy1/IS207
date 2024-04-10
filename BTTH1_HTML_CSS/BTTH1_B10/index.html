@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Trang Quản Trị</h1>
+      <div class="container__search">
+        <form action="">
+          <input type="search" placeholder="Search..." />
+          <button><img src="/search.svg" alt="" /></button>
+        </form>
+      </div>
+
+      <div class="sidebar left">
+        <ul
+          class="multilevel-accordion-menu vertical menu"
+          data-accordion-menu
+          aria-multiselectable="true"
+          role="tree"
+        >
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-palette"></i>
+              Quản lý chung
+            </a>
+          </li>
+
+          <li>
+            <details>
+              <summary href="#">
+                <i class="fa-solid fa-sitemap"></i>
+                Quản lý
+              </summary>
+              <ul class="menu vertical sublevel-1">
+                <li>
+                  <details>
+                    <summary href="#">Sản phẩm</summary>
+                    <ul class="menu vertical sublevel-2">
+                      <li><a class="subitem" href="#">Danh mục sản phẩm</a></li>
+                      <li><a class="subitem" href="#">Sản phẩm</a></li>
+                      <li><a class="subitem" href="#">Phiếu đặt hàng</a></li>
+                      <li><a class="subitem" href="#">Hóa đơn</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary href="#">Tài khoản</summary>
+                    <!-- <ul class="menu vertical sublevel-2">
+                      <li><a class="subitem" href="#">Thing 1</a></li>
+                      <li><a class="subitem" href="#">Thing 2</a></li>
+
+                      <li><a class="subitem" href="#">Thing 2</a></li>
+                    </ul> -->
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/f35e58d2c9.js"
+    crossorigin="anonymous"
+  ></script>
+</html>

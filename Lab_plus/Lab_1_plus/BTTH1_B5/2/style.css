@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+}
+body {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 600px;
+}
+h1 {
+  color: #8a2be2;
+}
+hr {
+  background-color: #0000ff;
+  padding: 2px;
+}
+
+button {
+  border-radius: 20px;
+  margin: 10px 0;
+}
+form {
+  margin: 10px;
+}
+
+td {
+  column-width: 150px;
+}
+
+p {
+  font-style: italic;
+}

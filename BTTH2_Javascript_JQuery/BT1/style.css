@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px blue solid;
+  margin: 2px;
+  width: 100%;
+}
+
+form {
+  border: 1px blue solid;
+  background-color: orange;
+  width: 50%;
+  display: flex;
+}
+td {
+  border: 1px blue solid;
+}
+.luong input {
+  width: 70%;
+}
+button {
+  display: flex;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.hs input {
+  width: 10%;
+}
+
+.error {
+  color: red;
+}

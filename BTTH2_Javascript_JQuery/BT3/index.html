@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script defer src="./script.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <table>
+        <tr>
+          <td class="date"></td>
+          <td class="staff"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><h3>Thực đơn</h3></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <table>
+              <form action="">
+                <thead>
+                  <td>Bàn</td>
+                  <td>Món ăn</td>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <select name="desk" class="desk">
+                        <option value="desk-1" class="" selected>Bàn 1</option>
+                        <option value="desk-2">Bàn 2</option>
+                        <option value="desk-3">Bàn 3</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="disk" id="" class="disk">
+                        <option value="20" class="">Bún bò</option>
+                        <option value="18">Hủ tiếu</option>
+                        <option value="17">Bánh canh</option>
+                        <option value="19">Phở bò</option>
+                        <option value="15">Nuôi</option>
+                        <option value="12">Bánh mì thịt</option>
+                        <option value="15">Bánh cuốn</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </form>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <table>
+        <form action="">
+          <thead colspan="4"><td class="desk-header">Bàn 1</td></thead>
+          <tbody>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td>
+                      <thead>
+                        <td>Món</td>
+                        <td>SL</td>
+                        <td>Tiền</td>
+                        <td></td>
+                      </thead>
+                      <tbody class="data data-1">
+                        <!-- <tr class="row">
+                          <td>Buns bo</td>
+                          <td>1</td>
+                          <td>30</td>
+                          <td><button class="delete">xóa</button></td>
+                        </tr> -->
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>Tổng tiền</td>
+                          <td colspan="3" class="result result-1"></td>
+                        </tr>
+                      </tfoot>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><button class="print">In hóa đơn</button></td>
+            </tr>
+          </tfoot>
+        </form>
+      </table>
+
+      <table>
+        <form action="">
+          <thead colspan="4"><td class="desk-header">Bàn 2</td></thead>
+          <tbody>
+            <tr>
+              <td>
+                <table>
+                  <tr>
+                    <td>
+                      <thead>
+                        <td>Món</td>
+                        <td>SL</td>
+                        <td>Tiền</td>
+                        <td></td>
+                      </thead>
+                      <tbody class="data data-2">
+                        <!-- <tr class="row">
+                          <td>Buns bo</td>
+                          <td>1</td>
+                          <td>30</td>
+                          <td><button class="delete">xóa</button></td>
+                        </tr> -->
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>Tổng tiền</td>
+                          <td colspan="3" class="result result-2"></td>
+                        </tr>
+                      </tfoot>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <button class="print">
+                  <a href="./bill.html" target="_blank"></a>
+                  In hóa đơn
+                </button>
+              </td>
+            </tr>
+          </tfoot>
+        </form>
+      </table>
+
+      <table>
+        <thead colspan="4"><td class="desk-header">Bàn 3</td></thead>
+        <tbody>
+          <tr>
+            <td>
+              <table>
+                <form action="">
+                  <tr>
+                    <td>
+                      <thead>
+                        <td>Món</td>
+                        <td>SL</td>
+                        <td>Tiền</td>
+                        <td></td>
+                      </thead>
+                      <tbody class="data data-3">
+                        <!-- <tr class="row">
+                          <td>Buns bo</td>
+                          <td>1</td>
+                          <td>30</td>
+                          <td><button class="delete">xóa</button></td>
+                        </tr> -->
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>Tổng tiền</td>
+                          <td colspan="3" class="result result-3"></td>
+                        </tr>
+                      </tfoot>
+                    </td>
+                  </tr>
+                </form>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td><button class="print">In hóa đơn</button></td>
+          </tr>
+        </tfoot>
+      </table>
+      <table class="bill">
+        <thead><td colspan="2">Hóa đơn</td></thead>
+        <tbody>
+          <tr>
+            <td>Ngày hóa đơn:</td>
+            <td class="bill-date"></td>
+          </tr>
+          <tr>
+            <td>Nhân viên:</td>
+            <td class="staff"></td>
+          </tr>
+          <tr>
+            <td>Bàn:</td>
+            <td class="table-bill"></td>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <thead>
+                  <td>Món</td>
+                  <td>SL</td>
+                  <td>Thành tiền</td>
+                </thead>
+                <tbody class="bill-data">
+                  <!-- <tr>
+                    <td>bun bo</td>
+                    <td>sl</td>
+                    <td>gia</td>
+                  </tr> -->
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Tổng tiền</td>
+                    <td colspan="3" class="bill-result"></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

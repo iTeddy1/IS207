@@ -1,0 +1,31 @@
+body {
+  background-color: #ffedca;
+}
+table,
+td {
+  border: 1px solid black;
+}
+table {
+  margin: 10px;
+  border-collapse: collapse;
+
+  width: 35%;
+}
+button {
+  margin: auto;
+  display: block;
+}
+#tel {
+  width: 100%;
+}
+input {
+  margin: 3px 0;
+}
+select {
+  width: 55%;
+  margin: 3px;
+}
+td:nth-of-type(1) {
+  color: blue;
+  padding: 3px;
+}

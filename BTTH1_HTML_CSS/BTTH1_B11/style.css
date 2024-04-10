@@ -1,0 +1,138 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  margin: 20px;
+  margin-bottom: 0;
+}
+
+header div {
+  border: 1px black solid;
+  display: flex;
+  align-items: center;
+}
+
+.header__title {
+  text-transform: uppercase;
+  font-size: 25px;
+}
+
+.header__logo {
+  width: 150px;
+  margin: 20px;
+}
+
+.nav {
+  margin-left: 20px;
+}
+
+.nav__list {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.nav__item {
+  padding: 10px 0;
+  width: 12%;
+  border: 1px black solid;
+  text-align: center;
+  background-color: navajowhite;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  margin: 20px;
+
+  border-color: greenyellow;
+}
+
+main {
+  border: 10px yellowgreen solid;
+  background-color: azure;
+}
+
+main > div {
+  border: 1px red solid;
+}
+
+.main__content {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 20px;
+  gap: 20px;
+  border: 1px blue solid;
+}
+
+.main__content--sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  margin: 0 20px;
+  border: 1px red solid;
+}
+
+.sub-1 {
+  margin-top: 20px;
+}
+
+.sub-2 {
+  margin-bottom: 20px;
+}
+
+.main__content--sub h2 {
+  margin-bottom: 0;
+}
+
+.main__content--sub p {
+  margin: 0;
+}
+
+.sub__content {
+  width: 95%;
+  text-align: center;
+}
+
+.side__content {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 20px;
+  border: 1px red solid;
+  background-color: aqua;
+  text-align: center;
+}
+
+.side__content p {
+  width: 80%;
+  font-size: 18px;
+  margin: 0 auto;
+}
+
+h3 {
+  margin: 0.83em auto 0 auto;
+  width: 80%;
+  text-transform: uppercase;
+}
+
+.cre {
+  align-self: flex-end;
+  position: relative;
+  right: 2%;
+  margin-bottom: 10px;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
