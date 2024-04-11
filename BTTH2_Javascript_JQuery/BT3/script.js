@@ -119,6 +119,8 @@ $(".print").on("click", function (e) {
   renderMarkupArray(currentTable.diskMenu, $(".bill-data"), false);
   renderSummary($(".bill-result"), currentTable);
   displayTime($(".bill-date"));
+  
+  window.open('./bill.html')
 });
 
 const checkExistAndAdd = (arr, target) => {
