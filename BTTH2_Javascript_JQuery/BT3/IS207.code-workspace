@@ -1,0 +1,15 @@
+{
+  "folders": [
+	{
+		"name": "IS207",
+		"path": "../.."
+	},
+	{
+		"name": "Lab_plus",
+		"path": "../../../../../Desktop/web uit lor/Lab_plus"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "IS207"
+  }
+}
