@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
+  <head></head>
   <body>
     <form name="frm" style="display: flex; flex-direction: column; width: 40%">
       Tên sản phẩm
@@ -22,8 +18,8 @@
       Link hình ảnh
       <input type="text" name="img" id="" />
 
-      <input type="submit" value="Thêm"/>
-      <input type="reset" value="Reset"/>
+      <input type="submit" value="Thêm" />
+      <input type="reset" value="Reset" />
     </form>
     <div class="list" style="display: flex"></div>
   </body>
@@ -36,15 +32,15 @@
     const list = $(".list");
     const arrayOfObject = [];
 
-    form.on("submit", (e) => {
-      e.preventDefault()
+    form.on("submit", e => {
+      e.preventDefault();
       obj = {
         img: "",
         name: frm.tensp.value,
         price: frm.gia.value,
         cond: frm.tinhtrang.value,
         seller: frm.nguoiban.value,
-        contact: frm.diachi_sdt.value.split(" / ")[0], 
+        contact: frm.diachi_sdt.value.split(" / ")[0],
         details: frm.chitiet.value,
         txt: "",
       };

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head></head>
-
   <body>
     <form name="frm">
       <p>Ho ten khach hang</p>
@@ -102,14 +100,14 @@
     });
 
     form.on("submit", () => {
-      obj={
-          name: frm.cusName.value || "",
-          address: frm.cusAddress.value || "",
-          txt: '',
-          totalBill: 0
-      }
+      obj = {
+        name: frm.cusName.value || "",
+        address: frm.cusAddress.value || "",
+        txt: "",
+        totalBill: 0,
+      };
 
-      console.log(obj)
+      console.log(obj);
       const checkboxes = $("input[type=checkbox]:checked");
 
       checkboxes.each((_, item) => {
