@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script defer src="./script.js"></script>
-  </head>
+  <head></head>
 
   <body>
     <form>
@@ -21,48 +18,161 @@
         name="cusAddress"
         placeholder="TPHcm 0942474208"
       />
-      <div class="list">
-        <!-- <div class="item">
+      <div class="list"></div>
+
+      <input type="submit" value="Thanh toán" />
+    </form>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script>
+    let obj;
+    const list = document.querySelector(".list");
+    const listOfItems = [
+      {
+        img: "",
+        name: "EA SPORT",
+        nsx: "Electronic Art",
+        price: 150000,
+        quantity: 1,
+      },
+      {
+        img: "",
+        name: "Marvel Spider man-2",
+        nsx: "Electronic Art",
+        price: 150000,
+        quantity: 1,
+      },
+      {
+        img: "",
+        name: "Sonic superstar",
+        nsx: "Electronic Art",
+        price: 150000,
+        quantity: 1,
+      },
+      {
+        img: "",
+        name: "League of legend",
+        nsx: "Riot Games",
+        price: 300000,
+        quantity: 1,
+      },
+
+      {
+        img: "",
+        name: "Hogwarts Legacy",
+        nsx: "WB Games",
+        price: 150000,
+        quantity: 1,
+      },
+      {
+        img: "",
+        name: "Minecraft",
+        nsx: "Microsoft",
+        price: 150000,
+        quantity: 1,
+      },
+    ];
+
+    const form = $("form");
+
+    // Render from existing data
+    listOfItems.forEach(item => {
+      const markup = `
+        <div class="item">
           <img src="" height="100px" alt="" />
-          <p class="name">EASPORT</p>
+          <p class='name'>${item.name}</p>
           <p>
             nxs:
-            <span class="nsx"></span>
+            <span class="nsx">${item.nsx}</span>
           </p>
           <p>
-            Gia
-            <span class="price"></span>
+            Gia:
+            <span class="price">${item.price}</span>
           </p>
           <div>
-            so luong:
-            <input type="number" name="" id="" value="1" />
-            chon mua
-            <input type="checkbox" name="buy" id="buy" />
-          </div>
-        </div> -->
-      </div>
+          so luong:
+          <input type="number" name="" id="" value="1" />
+          chon mua
+          <input type="checkbox" name="buy" id="buy" />
+        </div>
+      `;
 
-      <button type="submit">Thanh toan</button>
-    </form>
+      list.innerHTML += markup;
+    });
 
-    <!-- <table>
-      <thead>Hóa đơn</thead>
-      <tbody>
+    form.on("submit", () => {
+      obj = {
+        name: $(".name-customer").val() || "",
+        address: $(".address-customer") || "",
+        txt: "",
+        totalBill: 0,
+      };
+
+      const checkboxes = $("input[type=checkbox]:checked");
+
+      checkboxes.each((_, item) => {
+        const div = $(item).closest("div");
+        const name1 = div.closest(".item").find(".name").text();
+        const quantity = div.find("input[type=number]").val();
+        const price = +div.closest(".item").find(".price").text();
+        const sum = price * quantity;
+        obj.totalBill += sum;
+
+        const txtMarkup = `
+          <tr>
+            <td>${name1}</td>
+            <td>${quantity}</td>
+            <td>${price}</td>
+            <td>${sum}</td>
+          </tr>
+        `;
+
+        obj.txt += txtMarkup;
+      });
+      const table = createTable();
+      const w = window.open("./bill.html", "_self");
+
+      w.document.write(table);
+    });
+
+    const createTable = () => {
+      // Tinh tong
+      const billTotalMarkup = `
         <tr>
-          <td colspan="2">Họ tên</td>
-          <td colspan="2" class="name"></td>
+          <td>Tổng tiền</td>
+          <td>${obj.totalBill} đ</td>
         </tr>
-        <tr>
-          <td colspan="2">Địa chỉ/ Số điện thoại</td>
-          <td colspan="2" class="address_number"></td>
-        </tr>
-        <tr>
-          <td>Đĩa game</td>
-          <td>SL</td>
-          <td>ĐƠn giá</td>
-          <td>Thành tiền</td>
-        </tr>
-      </tbody>
-    </table> -->
-  </body>
+      `;
+
+      obj.txt += billTotalMarkup;
+
+      // Tao bang
+      const tableMarkup = `
+        <table>
+            <thead><td>Hóa đơn</td></thead>
+            <tbody>
+              <tr>
+                <td colspan="2">Họ tên</td>
+                <td colspan="2" class="name">${obj.name}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Địa chỉ/ Số điện thoại</td>
+                <td colspan="2" class="address_number">${obj.address}</td>
+              </tr>
+              <tr>
+                <td>Đĩa game</td>
+                <td>SL</td>
+                <td>ĐƠn giá</td>
+                <td>Thành tiền</td>
+              </tr>
+
+              ${obj.txt}
+
+            </tbody>
+          </table> 
+      `;
+      return tableMarkup;
+    };
+  </script>
 </html>

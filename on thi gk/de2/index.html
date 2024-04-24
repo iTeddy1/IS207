@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script defer src="./script.js"></script>
   </head>
   <body>
     <form action="" style="display: flex; flex-direction: column; width: 40%">
@@ -24,19 +22,76 @@
       Link hình ảnh
       <input type="text" name="img" id="" />
 
-      <button type="submit">Thêm</button>
-      <button type="button">Reset</button>
+      <input type="submit" value="Thêm"/>
+      <input type="reset" value="Reset"/>
     </form>
-    <div class="list" style="display: flex;">
-      <!-- <div style="display: flex;flex-direction: column;width: 40%;">
-      <img src="" alt="">
-      <a href=""></a>
-      Giá:  
-      Tình trạng: 
-      Người bán: 
-      Liên hệ
-    </div> -->
-    </div>
-
+    <div class="list" style="display: flex"></div>
   </body>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <script>
+    const form = $("form");
+    let obj;
+    const list = $(".list");
+    const arrayOfObject = [];
+
+    form.on("submit", (e) => {
+      e.preventDefault()
+      obj = {
+        img: "",
+        name: "",
+        price: 0,
+        cond: "",
+        seller: "",
+        contact: "", 
+        details: "",
+        txt: "",
+      };
+
+      obj.name = $("input[name=tensp]").val();
+      obj.price = $("input[name=gia]").val();
+      obj.cond = $("input[name=tinhtrang]").val();
+      obj.seller = $("input[name=nguoiban]").val();
+      const addressAndContact = $("input[name=diachi-sdt]").val().split(" / ");
+      obj.contact = addressAndContact[0];
+      obj.details = $("input[name=chitiet]").val();
+
+      const productMarkup = `
+        <div style="display: flex;flex-direction: column;">
+          <img src="${obj.img}" width='200px' heigh='200px'> <br>
+          <h1 href='#' onclick="detailsAppend('${obj.name}')">${obj.name}</h1> <br>
+          Giá:  ${obj.price} <br>
+          Tình trạng:  ${obj.cond} <br>
+          Người bán:  ${obj.seller} <br>
+          Liên hệ: ${obj.contact} <br>
+        </div>
+      `;
+
+      obj.txt += productMarkup;
+      arrayOfObject.push(obj);
+      list.append(obj.txt);
+    });
+
+    const detailsAppend = name => {
+      const currentObj = arrayOfObject.find(item => item.name === name);
+      if (!currentObj) return;
+
+      const detailsTable = `
+      <div style="display: flex;flex-direction: column;">
+        <img src="${currentObj.img}" width='200px' heigh='200px'> <br>
+        <h1> ${currentObj.name} </h1> <br>
+        Giá:  ${currentObj.price} <br>
+        Tình trạng:  ${currentObj.cond} <br>
+        Người bán:  ${currentObj.seller} <br>
+        Liên hệ: ${currentObj.contact} <br>
+        Chi Tiết: ${currentObj.details}
+      </div>`;
+
+      const w = window.open("./details.html", "_self");
+      w.document.write(detailsTable);
+    };
+  </script>
+
+  <!--!! 0942474208 MOMO !! -->
 </html>
