@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" style="display: flex; flex-direction: column; width: 40%">
+    <form name="frm" style="display: flex; flex-direction: column; width: 40%">
       Tên sản phẩm
       <input type="text" name="tensp" />
       Giá
@@ -14,7 +14,7 @@
       Người bán
       <input type="text" name="nguoiban" id="" />
       Địa chỉ liên hệ / Số điện thoại
-      <input type="text" name="diachi-sdt" id="" />
+      <input type="text" name="diachi_sdt" id="" />
       Tình trạng sản phẩm
       <input type="text" name="tinhtrang" />
       Mô tả chi tiết
@@ -40,22 +40,14 @@
       e.preventDefault()
       obj = {
         img: "",
-        name: "",
-        price: 0,
-        cond: "",
-        seller: "",
-        contact: "", 
-        details: "",
+        name: frm.tensp.value,
+        price: frm.gia.value,
+        cond: frm.tinhtrang.value,
+        seller: frm.nguoiban.value,
+        contact: frm.diachi_sdt.value.split(" / ")[0], 
+        details: frm.chitiet.value,
         txt: "",
       };
-
-      obj.name = $("input[name=tensp]").val();
-      obj.price = $("input[name=gia]").val();
-      obj.cond = $("input[name=tinhtrang]").val();
-      obj.seller = $("input[name=nguoiban]").val();
-      const addressAndContact = $("input[name=diachi-sdt]").val().split(" / ");
-      obj.contact = addressAndContact[0];
-      obj.details = $("input[name=chitiet]").val();
 
       const productMarkup = `
         <div style="display: flex;flex-direction: column;">

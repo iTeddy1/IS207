@@ -3,7 +3,7 @@
   <head></head>
 
   <body>
-    <form>
+    <form name="frm">
       <p>Ho ten khach hang</p>
       <input
         type="text"
@@ -102,13 +102,14 @@
     });
 
     form.on("submit", () => {
-      obj = {
-        name: $(".name-customer").val() || "",
-        address: $(".address-customer") || "",
-        txt: "",
-        totalBill: 0,
-      };
+      obj={
+          name: frm.cusName.value || "",
+          address: frm.cusAddress.value || "",
+          txt: '',
+          totalBill: 0
+      }
 
+      console.log(obj)
       const checkboxes = $("input[type=checkbox]:checked");
 
       checkboxes.each((_, item) => {
