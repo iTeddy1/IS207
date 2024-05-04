@@ -1,0 +1,26 @@
+
+main {
+width:max-content;
+  border: 1px black solid;
+}
+
+.sub{
+  padding-right: 10px;
+}
+.input{
+  width: 70%;
+}
+
+table {
+  border:5px white solid;
+  background-color: orange;
+  border-collapse: collapse;
+}
+
+input[type="Submit"] {
+  border-radius: 30px;
+}
+
+p {
+  text-align: center;
+}

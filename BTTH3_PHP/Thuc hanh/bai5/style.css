@@ -1,0 +1,29 @@
+main {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+
+  border: 1px black solid;
+}
+h1 {
+  text-align: center;
+}
+form {
+  display: flex;
+  background-color: #F5DAD2;
+  
+}
+section{
+  border: 1px black solid;
+  width: 60%;
+}
+.option{
+  width: 40%;
+}
+.input {
+  width: 20%;
+}
+
+table {
+  border: 1px blue solid;
+}
