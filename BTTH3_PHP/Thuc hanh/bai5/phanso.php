@@ -6,6 +6,7 @@ class PhanSo {
     public function __construct($tu, $mau) {
         $this->tu = $tu;
         $this->mau = $mau;
+        
     }
 
     public function cong($ps) {
