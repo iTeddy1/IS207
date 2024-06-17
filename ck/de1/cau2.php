@@ -46,9 +46,8 @@
       $songaythue = mysqli_fetch_assoc($songaythue)["DATEDIFF('$ngtra', '$ngthue')"];
     }    
 
-    $sotien = $dongia * $songaythue;
-
-    $sql = "INSERT INTO THUe (MaKH, Soxe, Ngaythue, ngaytra, giathue) VALUES ('$makh', '$soxe', '$ngthue', '$ngtra', '$sotien')";
+    $giathue = $dongia * $songaythue;
+    $sql = "UPDATE THUE SET NGAYTRA = '$ngtra', GIATHUE = '$giathue' WHERE MAKH = '$makh' AND SOXE = '$soxe' AND NGAYTHUE = '$ngthue'";
     mysqli_query($conn, $sql);
   }
 ?> 
