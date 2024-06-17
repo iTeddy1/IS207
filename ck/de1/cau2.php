@@ -47,6 +47,7 @@
     }    
 
     $giathue = $dongia * $songaythue;
+    
     $sql = "UPDATE THUE SET NGAYTRA = '$ngtra', GIATHUE = '$giathue' WHERE MAKH = '$makh' AND SOXE = '$soxe' AND NGAYTHUE = '$ngthue'";
     mysqli_query($conn, $sql);
   }

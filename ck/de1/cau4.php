@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['action']) && $_POST['action'] == 'print') {
     $ngay_thue = $_POST['ngay_thue'];
 
-    $sql = "SELECT * FROM KHACHHANG kh, XE xe, THUE thue WHERE kh.MAKH = thue.MAKH AND xe.SOXE = thue.SOXE AND thue.NGAYTHUE = '$ngay_thue'";
+    $sql = "SELECT * FROM KHACHHANG kh, XE xe, THUE thue WHERE kh.MAKH = thue.MAKH AND xe.SOXE = thue.SOXE AND thue.NGAYTHUE = '$ngay_thue' AND thue.NGAYTRA IS NULL";
     $result = mysqli_query($conn, $sql);
 
     echo "<table>";
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         url: '', // Same file
         type: 'POST',
         data: { action: 'print', ngay_thue: ngay_thue },
-        success: function ( response) {
+        success: function (response) {
           $('#render').html(response);
         },
       });

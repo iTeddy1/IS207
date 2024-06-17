@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </thead>
     <tbody>
       <?php
-      $sql = "SELECT * FROM XE WHERE Tinhtrang = 1";
+      $sql = "SELECT * FROM XE, Thue WHERE Tinhtrang = 1 and xe.soxe = thue.soxe";
       $result = mysqli_query($conn, $sql);
       while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
@@ -129,9 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       type: 'POST',
       data: { action: 'rent', soxe: soxe, makh: makh, ngay_thue: ngay_thue },
       success: function (response) {
-        console.log(response)
         location.reload();
-
       },
     });
   };

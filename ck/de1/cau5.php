@@ -109,9 +109,6 @@
           success: function (response) {
             $('#returned-cars').html(response);
             console.log(response);
-          },
-          error: function (xhr, status, error) {
-            console.error("AJAX Error:", status, error);
           }
         });
       });
