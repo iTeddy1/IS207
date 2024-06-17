@@ -22,7 +22,6 @@
               JOIN KHACHHANG ON THUE.MAKH = KHACHHANG.MAKH 
               JOIN XE ON THUE.SOXE = XE.SOXE 
               WHERE THUE.MAKH = '$makh' 
-              AND THUE.NGAYTRA IS NOT NULL 
               AND THUE.NGAYTRA BETWEEN '$from_date' AND '$to_date'";
 
       $result = mysqli_query($conn, $sql);

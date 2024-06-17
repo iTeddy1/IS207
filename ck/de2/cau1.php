@@ -10,24 +10,22 @@
 <body>
   <?php require_once("./index.php"); ?>
   <form action="">
-    Mã xe <input type="text" name="ma"> <br>
-    Tên xe <input type="text" name="ten">  <br>
-    Hãng xe <input type="text" name="hang"> <br>
-    Số chỗ <input type="number" name="so_cho"> <br>
-    Năm sản xuất <input type="number" name="nam_sx"> <br>
-    Đơn giá thuê <input type="text" name="don_gia"> <br>
+    Mã khách hàng <input type="text" name="ma"> <br>
+    Tên khách hàng <input type="text" name="ten">  <br>
+    Số điện thoại <input type="text" name="sdt"> <br>
+    Căn cước công dân <input type="text" name="cccn"> <br>
+
     <input name="submit" type="submit" value="Thêm">
   </form>
 </body>
 <?php 
   if(isset($_GET['submit'])) {
     $ma = $_GET['ma'];
-    $ten = $_GET['ten'];
-    $hang = $_GET['hang'];
-    $so_cho = $_GET['so_cho'];
-    $nam_sx = $_GET['nam_sx'];
-    $don_gia = $_GET['don_gia'];
-    $sql = "INSERT INTO xe (Soxe, TenXe, hangxe, SoCho, NamSX, DGThue, Tinhtrang) VALUES ('$ma', '$ten', '$hang', '$so_cho', '$nam_sx', '$don_gia', 0)";
+    $tenkh = $_GET['ten'];
+    $sdt = $_GET['sdt'];
+    $cccn = $_GET['cccn'];
+
+    $sql = "INSERT INTO KHACHHANG (MAKH, TENKH, SDT, CCCN) VALUES ('$ma', '$tenkh', '$sdt', '$cccn')";
 
    mysqli_query($conn, $sql);
   }

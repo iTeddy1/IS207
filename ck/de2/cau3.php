@@ -15,26 +15,21 @@
 require_once ("./index.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if (isset($_POST['action']) && $_POST['action'] == 'rent') {
-    $soxe = $_POST['soxe'];
+  if (isset($_POST['action']) && $_POST['action'] == 'da_them') {
+    $maphong = $_POST['maphong'];
     $makh = $_POST['makh'];
     $ngay_thue = $_POST['ngay_thue'];
 
-    $sql = "UPDATE XE SET Tinhtrang = 1 WHERE SOXE = $soxe";
+    $sql = "UPDATE PHONG SET Tinhtrang = 'dathue' WHERE MAPHONG = $maphong";
     $updateResult = mysqli_query($conn, $sql);
-    echo $updateResult;
-    if ($updateResult) {
-      $sql = "INSERT INTO THUE (MAKH, SOXE, NGAYTHUE) VALUES ('$makh', '$soxe', '$ngay_thue')";
-      $insertResult = mysqli_query($conn, $sql);
-      echo $insertResult ? 'success' : 'failure';
-    } else {
-      echo 'failure';
-    }
+    $sql = "INSERT INTO THUE (MAHD, MAPHONG, NGAYTHUE) VALUES ('$maphong', '$makh', '$ngay_thue')";
+    $insertResult = mysqli_query($conn, $sql);
+  
     exit;
   }
 
-  if (isset($_POST['action']) && $_POST['action'] == 'no_rent') {
-    $soxe = $_POST['soxe'];
+  if (isset($_POST['action']) && $_POST['action'] == 'trong') {
+    $maphong = $_POST['maphong'];
 
     $sql = "UPDATE XE SET Tinhtrang = 0 WHERE SOXE = $soxe";
     $updateResult = mysqli_query($conn, $sql);
@@ -54,120 +49,81 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
   <?php require_once ("./index.php"); ?>
   <h1>Thue xe</h1>
-  Họ tên khách hàng
-  <select name="makh" id="makh">
+  Mã hóa đơn
+  <select name="mahd" id="">
     <?php
-    $sql = "SELECT * FROM KHACHHANG";
+    $sql = "SELECT * FROM HOADON";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-      echo "<option value='" . $row['MAKH'] . "'>" . $row['TENKH'] . "</option>";
+      echo "<option value='" . $row['MAHD'] . "'>" . $row['MAHD'] . "</option>";
     }
     ?>
   </select>
-  Ngày thuê xe
-  <input type="date" name="ngay_thue" id="ngay_thue">
 
-  <h2> Danh sách các xe chưa thuê</h2>
+  <h2> Danh sách các phòng còn trống</h2>
   <table>
     <thead>
       <tr>
-        <td>Số xe</td>
-        <td>Tên xe</td>
-        <td>Hãng xe</td>
-        <td>Năm sản xuất</td>
-        <td>Số chỗ</td>
-        <td>Đơn giá thuê</td>
-        <td>Chọn thuê</td>
+        <td>STT</td>
+        <td>Mã phòng</td>
+        <td>Tên phòng</td>
+        <td>Chức năng</td>
       </tr>
     </thead>
     <tbody>
       <?php
-      $sql = "SELECT * FROM XE WHERE TINHTRANG = 0";
+      $sql = "SELECT * FROM PHONG WHERE TINHTRANG = 'trong'";
       $result = mysqli_query($conn, $sql);
+      $stt = 1;
       while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td id='car-" . $row['SOXE'] . "'>" . $row['SOXE'] . "</td>";
-        echo "<td>" . $row['TENXE'] . "</td>";
-        echo "<td>" . $row['HANGXE'] . "</td>";
-        echo "<td>" . $row['NAMSX'] . "</td>";
-        echo "<td>" . $row['SOCHO'] . "</td>";
-        echo "<td>" . $row['DGTHUE'] . "</td>";
-        echo "<td><button id='rent' onclick='rentCar(" . $row['SOXE'] . ")'>Thuê</button></td>";
+        echo "<td>" . $stt++ . "</td>";
+        echo "<td>" . $row['MAPHONG'] . "</td>";
+        echo "<td>" . $row['TENPHONG'] . "</td>";
+        echo "<td><button onclick='themPhong(" . $row['MAPHONG'] . ")'>Thêm</button></td>";
         echo "</tr>";
       }
       ?>
     </tbody>
   </table>
   <br>
-  <h2> Danh sách các xe đang thuê</h2>
+  <h2> Danh sách các phòng đã thuê</h2>
   <table>
+    <thead>
+      <tr>
+        <td>STT</td>
+        <td>Mã phòng</td>
+        <td>Tên phòng</td>
+        <td>Chức năng</td>
+      </tr>
+    </thead>
     <tbody>
       <?php
-      $sql = "SELECT * FROM XE WHERE Tinhtrang = 1";
+      $sql = "SELECT * FROM PHONG WHERE Tinhtrang = 'dathue'";
       $result = mysqli_query($conn, $sql);
+      $stt = 1;
       while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td id='car-" . $row['SOXE'] . "'>" . $row['SOXE'] . "</td>";
-        echo "<td>" . $row['TENXE'] . "</td>";
-        echo "<td>" . $row['HANGXE'] . "</td>";
-        echo "<td>" . $row['NAMSX'] . "</td>";
-        echo "<td>" . $row['SOCHO'] . "</td>";
-        echo "<td>" . $row['DGTHUE'] . "</td>";
-        echo "<td><button id='noRent' onclick='noRentCar(" . $row['SOXE'] . ")'>Không Thuê</button></td>";
+        echo "<td>" . $stt++ . "</td>";
+        echo "<td>" . $row['MAPHONG'] . "</td>";
+        echo "<td>" . $row['TENPHONG'] . "</td>";
+        echo "<td><button id='noRent' onclick='xoaPhong(" . $row['MAPHONG'] . ")'>Xóa</button></td>";
         echo "</tr>";
       }
       ?>
     </tbody>
   </table>
 </body>
-<!-- <script>
-  function rentCar(soxe) {
-    console.log('hello');
-    let makh = document.getElementById('makh').value;
-    let ngay_thue = document.getElementById('ngay_thue').value;
-    if (!ngay_thue) {
-      alert("Vui lòng chọn ngày thuê.");
-      return;
-    }
 
-    $.ajax({
-      url: '', // Same file
-      type: 'POST',
-      data: { action: 'rent', soxe: soxe, makh: makh, ngay_thue: ngay_thue },
-      success: function (response) {
-        if (response == 'success') {
-          location.reload();
-        } else {
-          alert('Thuê xe thất bại.');
-        }
-      }
-    });
-  };
-
-  function noRentCar(soxe) {
-    $.ajax({
-      url: '', // Same file
-      type: 'POST',
-      data: { action: 'no_rent', soxe: soxe },
-      success: function (response) {
-        if (response == 'success') {
-          location.reload();
-        } else {
-          alert('Không thuê xe thất bại.');
-        }
-      }
-    });
-  }
-</script> -->
 <script>
-  function rentCar(soxe) {
+  function themPhong(maphong) {
     let makh = $('#makh').val();
     let ngay_thue = $('#ngay_thue').val();
 
     $.ajax({
       url: '', // Same file
       type: 'POST',
-      data: { action: 'rent', soxe: soxe, makh: makh, ngay_thue: ngay_thue},
+      data: { action: 'da_them', maphong: maphong, makh: makh, ngay_thue: ngay_thue},
       success: function (response) {
         console.log(response)
         location.reload();
@@ -179,11 +135,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     });
   };
 
-  function noRentCar(soxe) {
+  function xoaPhong(maphong) {
     $.ajax({
       url: '', // Same file
       type: 'POST',
-      data: { action: 'no_rent', soxe: soxe },
+      data: { action: 'trong', maphong: maphong},
       success: function (response) {
         location.reload();
       },
