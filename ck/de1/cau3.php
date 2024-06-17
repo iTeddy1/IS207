@@ -15,38 +15,25 @@
 require_once ("./index.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $soxe = $_POST['soxe'];
+  
   if (isset($_POST['action']) && $_POST['action'] == 'rent') {
-    $soxe = $_POST['soxe'];
     $makh = $_POST['makh'];
     $ngay_thue = $_POST['ngay_thue'];
 
     $sql = "UPDATE XE SET Tinhtrang = 1 WHERE SOXE = $soxe";
-    $updateResult = mysqli_query($conn, $sql);
-    echo $updateResult;
-    if ($updateResult) {
-      $sql = "INSERT INTO THUE (MAKH, SOXE, NGAYTHUE) VALUES ('$makh', '$soxe', '$ngay_thue')";
-      $insertResult = mysqli_query($conn, $sql);
-      echo $insertResult ? 'success' : 'failure';
-    } else {
-      echo 'failure';
-    }
-    exit;
+    mysqli_query($conn, $sql);
+
+    $sql = "INSERT INTO THUE (MAKH, SOXE, NGAYTHUE) VALUES ('$makh', '$soxe', '$ngay_thue')";
+    mysqli_query($conn, $sql);
   }
 
   if (isset($_POST['action']) && $_POST['action'] == 'no_rent') {
-    $soxe = $_POST['soxe'];
-
     $sql = "UPDATE XE SET Tinhtrang = 0 WHERE SOXE = $soxe";
-    $updateResult = mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql);
 
-    if ($updateResult) {
-      $sql = "DELETE FROM THUE WHERE SOXE = $soxe";
-      $deleteResult = mysqli_query($conn, $sql);
-      echo $deleteResult ? 'success' : 'failure';
-    } else {
-      echo 'failure';
-    }
-    exit;
+    $sql = "DELETE FROM THUE WHERE SOXE = $soxe";
+    mysqli_query($conn, $sql);
   }
 }
 ?>
@@ -65,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
   </select>
   Ngày thuê xe
-  <input type="date" name="ngay_thue" id="ngay_thue">
+  <input type="date" name="ngay_thue" id="ngay_thue" required>
 
   <h2> Danh sách các xe chưa thuê</h2>
   <table>
@@ -101,6 +88,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <br>
   <h2> Danh sách các xe đang thuê</h2>
   <table>
+    <thead>
+      <tr>
+        <td>Số xe</td>
+        <td>Tên xe</td>
+        <td>Hãng xe</td>
+        <td>Năm sản xuất</td>
+        <td>Số chỗ</td>
+        <td>Đơn giá thuê</td>
+        <td>Chọn thuê</td>
+      </tr>
+    </thead>
     <tbody>
       <?php
       $sql = "SELECT * FROM XE WHERE Tinhtrang = 1";
@@ -120,45 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </tbody>
   </table>
 </body>
-<!-- <script>
-  function rentCar(soxe) {
-    console.log('hello');
-    let makh = document.getElementById('makh').value;
-    let ngay_thue = document.getElementById('ngay_thue').value;
-    if (!ngay_thue) {
-      alert("Vui lòng chọn ngày thuê.");
-      return;
-    }
 
-    $.ajax({
-      url: '', // Same file
-      type: 'POST',
-      data: { action: 'rent', soxe: soxe, makh: makh, ngay_thue: ngay_thue },
-      success: function (response) {
-        if (response == 'success') {
-          location.reload();
-        } else {
-          alert('Thuê xe thất bại.');
-        }
-      }
-    });
-  };
-
-  function noRentCar(soxe) {
-    $.ajax({
-      url: '', // Same file
-      type: 'POST',
-      data: { action: 'no_rent', soxe: soxe },
-      success: function (response) {
-        if (response == 'success') {
-          location.reload();
-        } else {
-          alert('Không thuê xe thất bại.');
-        }
-      }
-    });
-  }
-</script> -->
 <script>
   function rentCar(soxe) {
     let makh = $('#makh').val();
@@ -167,15 +127,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $.ajax({
       url: '', // Same file
       type: 'POST',
-      data: { action: 'rent', soxe: soxe, makh: makh, ngay_thue: ngay_thue},
+      data: { action: 'rent', soxe: soxe, makh: makh, ngay_thue: ngay_thue },
       success: function (response) {
         console.log(response)
         location.reload();
 
       },
-      error: function (xhr, status, error) {
-        console.error("AJAX Error:", status, error);
-      }
     });
   };
 
@@ -187,9 +144,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       success: function (response) {
         location.reload();
       },
-      error: function (xhr, status, error) {
-        console.error("AJAX Error:", status, error);
-      }
     });
   }
 </script>

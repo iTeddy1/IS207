@@ -17,8 +17,10 @@ require_once ("./index.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['action']) && $_POST['action'] == 'print') {
     $ngay_thue = $_POST['ngay_thue'];
+
     $sql = "SELECT * FROM KHACHHANG kh, XE xe, THUE thue WHERE kh.MAKH = thue.MAKH AND xe.SOXE = thue.SOXE AND thue.NGAYTHUE = '$ngay_thue'";
     $result = mysqli_query($conn, $sql);
+
     echo "<table>";
     echo "<thead>";
     echo "<tr>";
@@ -29,9 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "</tr>";
     echo "</thead>";
 
+    $stt = 1;
     while ($row = mysqli_fetch_assoc($result)) {
       echo "<tr>";
-      echo "<td id='car-" . $row['MAT'] . "'>" . $row['MAT'] . "</td>";
+      echo "<td>" . $stt++ .  "</td>";
       echo "<td>" . $row['TENKH'] . "</td>";
       echo "<td>" . $row['SOXE'] . "</td>";
       echo "<td>" . $row['TENXE'] . "</td>";
@@ -39,23 +42,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo "</table>";
   }
+  exit;
 }
 ?>
 
 <body>
   <?php require_once ("./index.php"); ?>
   Chọn ngày
-  <input type="date" type="submit" name="ngay_thue" id="ngay_thue">
+  <form id="form" action="">
+    <input type="date" type="submit" name="ngay_thue" id="ngay_thue">
+    <button type="submit">Theem</button>
+  </form>
   <div id="render"></div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
-    $('#ngay_thue').keypress(function (e) {
+    $('#form').submit(function (e) {
+      e.preventDefault();
       $('#render').html('');
-      if (e.key === 'Enter') {
-        $('#rent').click();
-      }
+  
       let ngay_thue = $('#ngay_thue').val();
       $.ajax({
         url: '', // Same file
@@ -64,9 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         success: function ( response) {
           $('#render').html(response);
         },
-        error: function (xhr, status, error) {
-          console.error("AJAX Error:", status, error);
-        }
       });
     });
 </script>
